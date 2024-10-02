@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Authors Table</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f9;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 18px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        background-color: white;
+      }
+
+      th,
+      td {
+        padding: 12px 15px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #4caf50;
+        color: white;
+        text-transform: uppercase;
+      }
+
+      tr {
+        border-bottom: 1px solid #dddddd;
+      }
+
+      tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+      }
+
+      tr:hover {
+        background-color: #f1f1f1;
+      }
+
+      a {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      p {
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <table border="2">
+      <tr>
+        <th>lien</th>
+        <th>username</th>
+        <th>email</th>
+        <th>books</th>
+      </tr>
+
+      {% if authors is empty or authors is not defined %}
+      <p>error</p>
+      {% else %} {% for a in authors %}
+      <tr>
+        <td><a href="{{ path('DetailAuthers', { id: a.id }) }}">details</a></td>
+        <td>{{ a.username }}</td>
+        <td>{{ a.email }}</td>
+        <td>{{ a.nb_books }}</td>
+      </tr>
+      {% endfor %} {% endif %}
+    </table>
+  </body>
+</html>
