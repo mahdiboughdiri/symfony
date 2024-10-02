@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Details</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+        color: #007bff;
+      }
+      .book-details {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+      p {
+        font-size: 18px;
+        margin: 10px 0;
+      }
+      .label {
+        font-weight: bold;
+        color: #555;
+      }
+      .value {
+        color: #007bff;
+      }
+      .back-link {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+        text-decoration: none;
+        padding: 10px 15px;
+        background-color: #28a745;
+        color: white;
+        border-radius: 5px;
+      }
+      .back-link:hover {
+        background-color: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Book Details</h1>
+    <div class="book-details">
+      <p>
+        <span class="label">Title of book:</span>
+        <span class="value">{{ book.title }}</span>
+      </p>
+      <p>
+        <span class="label">Publication date:</span>
+        <span class="value">{{ book.publicationDate | date('Y-m-d') }}</span>
+      </p>
+      <p>
+        <span class="label">Author:</span>
+        <span class="value">{{ book.authors.username }}</span>
+      </p>
+    </div>
+
+    <a href="{{ path('display_books') }}" class="back-link"
+      >Back to Book List</a
+    >
+  </body>
+</html>
