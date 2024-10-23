@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> </title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+      }
+      th {
+        background-color: #007bff;
+        color: white;
+      }
+      td {
+        background-color: #fff;
+      }
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+      a {
+        padding: 8px 12px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        margin-right: 5px;
+      }
+      a:hover {
+        background-color: #0056b3;
+      }
+      .flash-message {
+        padding: 10px;
+        margin-bottom: 20px;
+        color: white;
+        background-color: #28a745;
+        border-radius: 4px;
+      }
+      .flash-message.error {
+        background-color: #dc3545;
+      }
+      p {
+        font-size: 18px;
+        color: #333;
+      }
+      .actions a {
+        background-color: #ffc107;
+      }
+      .actions a:hover {
+        background-color: #e0a800;
+      }
+      .add-book {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+      .add-book:hover {
+        background-color: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    {% for message in app.flashes('message') %}
+    <div class="flash-message">{{ message }}</div>
+    {% endfor %}
+
+    <h1>List of Etudiant</h1>
+
+    {% if etudiant is empty %}
+    <p>No Etudiant found</p>
+    {% else %}
+    <form action="{{path ("display_etudiant")}}">
+      <input type="text" name="search" value="{{'search'}}" placeholder="entrer email">
+      <button type="submit"> Recherche</button>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prenom</th>
+          <th>Age</th>
+          <th>Email</th>
+          <th>Classe</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for b in etudiant %}
+        <tr>
+          <td>{{ b.nom }}</td>
+          <td>{{ b.prenom }}</td>
+          <td>{{ b.age }}</td>
+          <td>{{ b.email }}</td>
+          <td>{{ b.classes.nom }}</td>
+          <td class="actions">
+            <a
+              href="{{ path('edit_etudiant', { id: b.id }) }}"
+              style="background-color: #17a2b8"
+              >Edit Classe</a
+            >
+            <a
+              href="{{ path('delete_etudiant', { id: b.id }) }}"
+              style="background-color: #dc3545"
+              >Delete</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="{{ path('add_etudinat') }}" class="add-book">Add Classe</a>
+    <a href="{{ path('tri_etudiant') }}" class="add-book">tri</a>
+
+    {% endif %}
+  </body>
+</html>
